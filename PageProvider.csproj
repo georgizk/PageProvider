@@ -107,23 +107,14 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\ItemIndexRangeList.cs" />
+    <Compile Include="Collection\ItemIndexRangeList.cs" />
     <Compile Include="Model\MangaPage.cs" />
-    <Compile Include="Model\PageDataSource.cs" />
-    <Compile Include="Model\ObservableTest.cs" />
-    <Compile Include="Model\VirtualizedRandomAccessCollection.cs" />
-    <Compile Include="MangaPageLoader.cs" />
+    <Compile Include="DataSource\PageDataSource.cs" />
+    <Compile Include="Collection\VirtualizedRandomAccessCollection.cs" />
+    <Compile Include="PageLoader\MangaPageLoader.cs" />
     <Compile Include="Model\Manga.cs" />
-    <Compile Include="Model\MangaCollection.cs" />
     <Compile Include="Model\ReadingList.cs" />
-    <Compile Include="Model\MangaDataSource.cs" />
-    <Compile Include="PageCollection\GridViewImageCollection.cs" />
-    <Compile Include="PageCollection\FlipViewImageCollection.cs" />
-    <Compile Include="PageCollection\IncrementalLoadingCollection.cs" />
-    <Compile Include="PageCollection\PartialLoadingCollection.cs" />
-    <Compile Include="PageCollection\ImageIncrementalLoadingCollection.cs" />
-    <Compile Include="PageLoader\CoversLoader.cs" />
-    <Compile Include="PageLoader\FileLoader.cs" />
+    <Compile Include="DataSource\MangaDataSource.cs" />
     <Compile Include="PageLoader\Loader.cs" />
     <Compile Include="PageLoader\ZipLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

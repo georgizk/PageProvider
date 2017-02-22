@@ -138,6 +138,10 @@ namespace PageProvider.Collection
 
         private void notifyCacheMiss(int index)
         {
+            lock (requestedIndexesLock)
+            {
+                requestedIndexes.Add(index);
+            }
             CacheMiss?.Invoke(this, new CacheMissEventArgs(index));
         }
 
@@ -184,7 +188,7 @@ namespace PageProvider.Collection
                 var m = await _pending;
                 this[index] = m;
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -211,8 +215,16 @@ namespace PageProvider.Collection
                     if (!cachedItems.ContainsKey(index))
                     {
                         notifyCacheMiss(index);
-                        return dataSource.Placeholder;
+                        try
+                        {
+                            return dataSource.Placeholder;
+                        }
+                        finally
+                        {
+                            loadRequestedIndexes();
+                        }
                     }
+
                     return cachedItems[index];
                 }
             }
@@ -323,7 +335,6 @@ namespace PageProvider.Collection
             }
         }
         public event NotifyCollectionChangedEventHandler CollectionChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public virtual void Add(T item)
         {
