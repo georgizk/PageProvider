@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
@@ -409,6 +408,11 @@ namespace PageProvider.Collection
             // then request more
             lock (requestedIndexesLock)
             {
+                requestedIndexes.Clear();
+                if (_pending != null)
+                {
+                    _pending.Cancel();
+                }
                 foreach (var idx in neededKeys)
                 {
                     requestedIndexes.Add(idx);
