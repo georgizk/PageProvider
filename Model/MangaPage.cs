@@ -22,10 +22,20 @@ namespace PageProvider.Model
             }
         }
 
-        public MangaPage(int index, SoftwareBitmap src = null)
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+        }
+
+        public MangaPage(int index, string name = "", SoftwareBitmap src = null)
         {
             this.index = index;
             this.src = src;
+            this.name = name;
         }
     }
 }

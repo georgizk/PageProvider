@@ -95,8 +95,9 @@ namespace PageProvider.DataSource
             c.ThrowIfCancellationRequested();
             _loadImage = loader.loadImage(index, width, height);
             var bmp = await _loadImage;
+            var name = loader.ImageName(index);
             c.ThrowIfCancellationRequested();
-            var mp = new MangaPage(index, bmp);
+            var mp = new MangaPage(index, name, bmp);
             return mp;
         }
 

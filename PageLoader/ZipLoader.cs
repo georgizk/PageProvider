@@ -29,6 +29,15 @@ namespace PageProvider.PageLoader
             }
         }
 
+        public override string ImageName(int index)
+        {
+            if (index >= Count || index < 0)
+            {
+                return null;
+            }
+            return entries[index].Key;
+        }
+
         IAsyncOperation<SoftwareBitmap> _ongoingTask;
 
         public override IAsyncOperation<SoftwareBitmap> loadImage(int index, int width = 0, int height = 0)
@@ -41,6 +50,10 @@ namespace PageProvider.PageLoader
 
             var r = AsyncInfo.Run(async (workItem) =>
             {
+                if (index >= Count || index < 0)
+                {
+                    return null;
+                }
                 workItem.ThrowIfCancellationRequested();
                 var e = entries[index];
                 var str = e.OpenEntryStream();
